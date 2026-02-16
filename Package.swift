@@ -22,12 +22,6 @@ let package = Package(
         .target(
             name: "NoFlyZone",
             dependencies: []
-        ),
-        // Example app target
-        .executableTarget(
-            name: "NoFlyZoneExample",
-            dependencies: ["NoFlyZone"],
-            path: "Examples/NoFlyZoneExample"
         )
     ]
 )
