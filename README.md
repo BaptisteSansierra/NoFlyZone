@@ -4,6 +4,9 @@ A SwiftUI modifier that creates an overlay to block user interactions everywhere
 
 Perfect for swipe-to-delete patterns, edit modes, modals with specific action buttons, or any UI where you want to restrict interactions to designated areas.
 
+![Contact list](screenshots/screen1.png)
+![Swiped row with noFlyZone enabled](screenshots/screen2.png)
+
 ## Features
 
 - ✅ Block all screen interactions with a transparent overlay
