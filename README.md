@@ -4,8 +4,16 @@ A SwiftUI modifier that creates an overlay to block user interactions everywhere
 
 Perfect for swipe-to-delete patterns, edit modes, modals with specific action buttons, or any UI where you want to restrict interactions to designated areas.
 
-<img src="assets/screenshots/screenshots/screen1.png" width="300"/>
-<img src="assets/screenshots/screenshots/screen2.png" width="300"/>
+<p align="center">
+  <img src="screenshots/screen1.png" alt="Swipe to Delete Demo" width="300"/>
+  <img src="screenshots/screen2.png" alt="NoFly enabled with debug mode" width="300"/>
+</p>
+
+<p align="center">
+  <em>Swipe-to-delete pattern with NoFlyZone</em>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <em>Debug mode showing authorized zones</em>
+</p>
 
 ## Features
 
