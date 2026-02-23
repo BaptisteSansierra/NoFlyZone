@@ -63,7 +63,7 @@ public struct NoFlyZoneModifier: ViewModifier {
             .fill(.green)
             .opacity(0.5)
             .frame(width: authorizedZones[idx].zone.width,
-                   height: authorizedZones[idx].zone.size.height)
+                   height: authorizedZones[idx].zone.height)
             .offset(x: authorizedZones[idx].zone.origin.x,
                     y: authorizedZones[idx].zone.origin.y)
             .ignoresSafeArea()

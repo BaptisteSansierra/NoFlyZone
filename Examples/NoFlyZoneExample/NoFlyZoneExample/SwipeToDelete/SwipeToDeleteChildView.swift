@@ -11,16 +11,15 @@ import NoFlyZone
 struct SwipeToDeleteChildView: View {
     
     // MARK: States & Bindings
-    @State private var revealedItemIndex: String? = nil
     @State private var revealedIndex: Int? = nil
     @State private var deleteButtonFrame: CGRect = .zero
     @Binding private var displayNoFlyZone: Bool
     @Binding private var noFlyAuthorizedZones: [NoFlyZoneData]
     @Binding private var items: [String]
-
+    
     // MARK: properties
     private var tag: Int
-
+    
     // MARK: Init
     init(tag: Int,
          displayNoFlyZone: Binding<Bool>,
@@ -38,7 +37,7 @@ struct SwipeToDeleteChildView: View {
             RoundedRectangle(cornerRadius: 15)
                 .fill(.white)
                 .frame(height: CGFloat(items.count) * (60 + 5) + 5 + 5 )
-
+            
             VStack(spacing: 5) {
                 ForEach(items.indices, id: \.self) { index in
                     rowView(index)
@@ -50,11 +49,15 @@ struct SwipeToDeleteChildView: View {
         .padding()
         .onChange(of: displayNoFlyZone) { _, newValue in
             guard newValue == false else { return }
-            revealedItemIndex = nil
+            revealedIndex = nil
             deleteButtonFrame = .zero
             withAnimation {
                 revealedIndex = nil
             }
+        }
+        .onChange(of: deleteButtonFrame) { old, new in
+            guard old != new else { return }
+            onChangeDeleteButtonFrame()
         }
     }
     
@@ -67,12 +70,7 @@ struct SwipeToDeleteChildView: View {
                     .onChanged { value in
                         if value.translation.width < -50 {
                             revealedIndex = index
-                            displayNoFlyZone = true
-                            noFlyAuthorizedZones = [NoFlyZoneData(viewId: tag,
-                                                                  itemId: index,
-                                                                  zone: deleteButtonFrame)]
                         }
-
                     }
             )
             .allowsHitTesting(true) // keeps List scrolling alive
@@ -109,6 +107,10 @@ struct SwipeToDeleteChildView: View {
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 Spacer()
+//                Text("del frame = x:\(deleteButtonFrame.origin.x) y:\(deleteButtonFrame.origin.y) w:\(deleteButtonFrame.size.width) h:\(deleteButtonFrame.size.height)")
+//                    .font(.caption2)
+//                    .fontWeight(.ultraLight)
+                
             }
             .background(Color.white)
             .frame(height: 60)
@@ -116,6 +118,15 @@ struct SwipeToDeleteChildView: View {
             .animation(.easeInOut, value: revealedIndex)
             .border(.gray)
         }
+    }
+    
+    private func onChangeDeleteButtonFrame() {
+        guard let revealedIndex = revealedIndex else { return }
+        guard deleteButtonFrame != .zero else { return }
+        displayNoFlyZone = true
+        noFlyAuthorizedZones = [NoFlyZoneData(viewId: tag,
+                                              itemId: revealedIndex,
+                                              zone: deleteButtonFrame)]
     }
 }
 
