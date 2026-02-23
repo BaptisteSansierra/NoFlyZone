@@ -212,7 +212,7 @@ func noFlyZone(
 
 ## Example Project
 
-Check out the [Example](Example/) folder for a complete demo app showing various use cases
+Check out the [Example](Examples/) folder for a complete demo app showing various use cases
 
 ## License
 
